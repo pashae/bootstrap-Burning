@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Viewport" content="width=device-width,initial-scale=1">
+	<title>管理系统</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+	<!-- 保证低版本的IE支持html5 -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		body {
+			padding-top: 50px;				/*留出天地，并且保证内容不会被覆盖*/
+			padding-bottom: 50px;		
+		}
+
+		.sidebar {
+			display: block;
+            background-color: #f5f5f5;
+            position: fixed;
+            z-index: 200;
+            top: 51px;
+            left: 0px;
+            bottom: 0px;
+            padding: 20px 0 0 0;
+            border-right: 1px solid #eee;
+            overflow-x: hidden;
+        }
+        .nav-sidebar > .active > a,
+        .nav-sidebar > .active > a:hover,
+        .nav-sidebar > .active > a:focus {
+            color: #fff;
+            background-color: #428bca;
+        }
+
+		#btn-group {
+			padding-bottom: 20px;
+		}
+
+		.progress {
+			margin-top: 10px;
+		}
+
+		.separator {
+			padding: 10px 0;
+		}
+	</style>
+</head>
+<body>
+	<!-- 顶部导航栏 -->
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">皇城CS管理系统</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">功能 <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+	        <li><a href="#" data-toggle="modal" data-target="#csModal">帮助</a></li>
+	      </ul>
+	      <form class="navbar-form navbar-right" role="search">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="用户名...">
+	          <input type="text" class="form-control" placeholder="密码...">
+	        </div>
+	        <button type="submit" class="btn btn-default">登录</button>
+	      </form>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<!-- 主体内容，两列布局 -->
+	<div class="container-fluid">
+		<div class="row">
+			<!-- 这是左侧垂直导航栏 -->
+  			<div class="col-sm-3 col-md-3 sidebar">
+				<ul class="nav nav-sidebar">
+				    <li role="presentation" class="active"><a href="#">首页</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+				    <li role="presentation"><a href="#">信息建立</a></li>
+				    <li role="presentation"><a href="#">信息查询</a></li>
+				    <li role="presentation"><a href="#">信息管理</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+				    <li role="presentation"><a href="#">设置</a></li>
+				    <li role="presentation"><a href="#">帮助</a></li>
+				</ul>
+  			</div>
+  			<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3">
+				<div class="page-header">
+					<h1>管理控制台</h1>
+				</div>
+				<!-- 按钮 -->
+				<div id="btn-group">
+					<div class="btn-group">
+					  	<button type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">一键发送消息</button>
+					</div>
+					<div class="btn-group">
+					  	<button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false">一键换图</button>
+					</div>
+					<div class="btn-group">
+					  	<button type="button" class="btn btn-success" aria-haspopup="true" aria-expanded="false">OP通道设置</button>
+					</div>
+					<div class="btn-group">
+					  	<button type="button" class="btn btn-info" aria-haspopup="true" aria-expanded="false">会员通道设置</button>
+					</div>
+					<div class="btn-group">
+					  	<button type="button" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">银行</button>
+					</div>
+					<div class="btn-group">
+					  	<button type="button" class="btn btn-danger" aria-haspopup="true" aria-expanded="false">服务器设置</button>
+					</div>
+				</div>
+				<!-- 两列布局的面板内容 -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+							   	<h3 class="panel-title">服务器最新消息</h3>
+							</div>
+							<div class="panel-body">
+							<!-- 警告框实现 -->
+							    <div class="alert alert-success" role="alert">
+									[H.F]Burning !于2016-01-25 20:21:34进入服务器！
+							    </div>
+							    <div class="alert alert-info" role="alert">
+									[H.F]Burning !于2016-01-25 20:56:34向其银行账户存款5000！
+							    </div>
+							    <div class="alert alert-warning" role="alert">
+									您的服务器正在遭受未知IP的DDOS攻击，阿里云正在为您提供防护!
+							    </div>
+							    <div class="alert alert-danger" role="alert">
+									您的服务器已经停机，阿里云正在为您清洗本次DDOS攻击所产生的流量！
+							    </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+							   	<h3 class="panel-title">OP群组消息</h3>
+							</div>
+							<div class="panel-body">
+							<!-- 列表实现 -->
+								<ul class="list-group">
+									<li class="list-group-item list-group-item-info">Miracle | Mt:"你在干什么呢？"...<span class="badge">42</span></li>
+								</ul>
+								<ul class="list-group">
+									<li class="list-group-item list-group-item-info">[H.F]Rock n Rola:"谁把我的密码改了？"...<span class="badge">99+</span></li>
+								</ul>
+								<ul class="list-group">
+									<li class="list-group-item list-group-item-info">Miracle | Nn:"服务器又挂机了？"...<span class="badge">3</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 两列布局面板内容 -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+							   	<h3 class="panel-title">皇城皇家银行</h3>
+							</div>
+							<div class="panel-body">
+								<!-- 表格实现 -->
+								<table class="table table-striped">
+									<tr>
+										<td>#</td>
+										<td>ID</td>
+										<td>使用次数</td>
+										<td>总存款</td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>[H.F]1w2a</td>
+										<td>10237</td>
+										<td>99999999</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Miracle | Amokachi</td>
+										<td>30032</td>
+										<td>23838</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>[H.F]Burning !</td>
+										<td>99</td>
+										<td>760000</td>
+									</tr>
+								</table>
+								<button type="button" class="btn btn-primary">查看详细>></button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">服务器近况</h3>
+							</div>
+							<div class="panel-body">
+								<span class="label label-primary">阿里云防护</span>
+								<div class="progress">
+								  	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+								    70%
+								  	</div>
+								</div>
+								<span class="label label-danger">DDOS攻击强度</span>
+								<div class="progress">
+								  	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width: 98%;">
+								    98%
+								  	</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr class="separator">
+				<footer>
+					<p class="pull-right"><a href="#top">回到顶部</a></p>
+					<p>&copy;&nbsp;Leesunpasahe&nbsp;
+					  	<strong>[H.F]Burning !</strong>
+					  	<a href="mailto:#">pashae@sina.cn</a>
+					</p>					
+				</footer>
+  			</div>
+		</div>
+	</div>
+	<!-- "帮助"模态框设计 -->
+	<div class="modal fade" id="csModal" tabindex="-1" role="dialog" aria-labelledby="csModalLabel">
+	  	<div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">宇宙の中心-皇城CS服务器</h4>
+	      		</div>
+	      		<div class="modal-body">
+	        		皇城CS服务器是现今全中国最大的CS混战服务器，自1993年以来成立至今，为中国CS界培养了无数高手，先后有数位玩家代表中国出征世界大赛并取得骄人的成绩。
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-primary" data-dismiss="modal">Roger That!</button>
+	      		</div>
+	    	</div>
+	  	</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
